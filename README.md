@@ -8,7 +8,7 @@ Between $z=0$ and $z=10$ a friend-of-friend halo catalogue has been contructed a
 
 The OuterRim Friend-of-friend halo information has been stored in 110 files ending "#0...#109".
 
-The information in the files "*fofproperties*" under each "STEP#" directory is as follow:
+The information in the files "/*fofproperties/*" under each "STEP#" directory is as follow:
 
 ```
 [data type] Variable name
@@ -50,8 +50,11 @@ The information in the files "*fofproperties*" under each "STEP#" directory is a
 
 The OuterRim Friend-of-friend halo information has been stored in 110 files ending "#0...#109".
 
-The information in the files "*particles*" under each "STEP#" directory is as follow:
+The information in the files "/*particles/*" under each "STEP#" directory is as follow:
+
 ```
+[data type] Variable name
+
 [f 32] x
 [f 32] y
 [f 32] z
