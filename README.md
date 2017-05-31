@@ -6,12 +6,13 @@ The OuterRim simulation was run on a cubic volume of side 3000 Mpc$/h$, with dar
 
 Between $z=0$ and $z=10$ a friend-of-friend halo catalogue has been contructed assuming $b=0.168$. There are a minimun of 20 particles per halo.
 
-The OuterRim Friend-of-friend halo information has been stored in 110 files ending #0...#109.
+The OuterRim Friend-of-friend halo information has been stored in 110 files ending "#0...#109".
 
-The information in the files *fofproperties* under each STEP# directory is as follow:
---------------------------------------------
+The information in the files "*fofproperties*" under each "STEP#" directory is as follow:
+
+```
 [data type] Variable name
----------------------------------------------
+
 [i 32] fof_halo_count
 [i 64] fof_halo_tag
 [f 32] fof_halo_mass
@@ -25,7 +26,7 @@ The information in the files *fofproperties* under each STEP# directory is as fo
 [f 32] fof_halo_mean_vy
 [f 32] fof_halo_mean_vz
 [f 32] fof_halo_vel_disp
--------------------------------------------------
+```
 
 ### Definitions from Katrin Heitmann:
 
@@ -47,10 +48,10 @@ The information in the files *fofproperties* under each STEP# directory is as fo
 
 ## Particle files information
 
-The OuterRim Friend-of-friend halo information has been stored in 110 files ending #0...#109.
+The OuterRim Friend-of-friend halo information has been stored in 110 files ending "#0...#109".
 
-The information in the files *particles* under each STEP# directory is as follow:
----------------------------------------------
+The information in the files "*particles*" under each "STEP#" directory is as follow:
+```
 [f 32] x
 [f 32] y
 [f 32] z
@@ -59,7 +60,7 @@ The information in the files *particles* under each STEP# directory is as follow
 [f 32] vz
 [i 64] id
 [i 64] fof_halo_tag
----------------------------------------------
+```
 
 * x,y,z are measured in comoving Mpc/h 
 * vx,vy, vz are comoving peculiar in km/s.
@@ -70,5 +71,4 @@ The information in the files *particles* under each STEP# directory is as follow
 
 This repository contains code relevant for the construction of mocks catalogues using the OuterRim simulation.
 
-* **produce_ascii_files**: Contains programs to read the OuterRim simulation files in the genericIO format (both halo and particle information) and produce ASCII files. In order to use this code, the python module generio is required. This can be get following the directions in:
-http://trac.alcf.anl.gov/projects/genericio
+* **produce_ascii_files**: Contains programs to read the OuterRim simulation files in the genericIO format (both halo and particle information) and produce ASCII files. In order to use this code, the python module generio is required. This can be get following [this directions](http://trac.alcf.anl.gov/projects/genericio).

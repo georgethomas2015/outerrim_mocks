@@ -1,4 +1,4 @@
-## Producing ASCII files
+# Producing ASCII files
 
 The OuterRim simulation is stored in the binary format genericIO. The programs in this directory read in the OuterRim original files and write them as ASCII files.
 
