@@ -122,7 +122,7 @@ if (fofproperties):
     print 'Test plot: ',plotfile
 
 ######## Particles
-particles = False
+particles = True
 if (particles):
     print 'Particle catalogue --------------------'
 

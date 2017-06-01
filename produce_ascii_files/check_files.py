@@ -41,6 +41,18 @@ for istep in steps:
                 print '      GOOD: ascii halo files produced, e.g. '
                 print '     ',files[0]
 
+                # Further test
+                further= True
+                if (further):
+                    for infile in files:
+                        with open(infile) as ff:
+                            fof = []
+                            for line in ff: 
+                                #count, tag, mass, xc, yc, zc, xm, ym, zm, vx, vy, vz
+                                vz = np.append(fof, line.strip().split()[11])
+                                if (len(vz)>100.): break
+                        print 'OK',infile
+
     # Particles
     files = glob.glob(nroot+'/*'+str(istep)+'*.haloparticles#*')
     nfiles = len(files) # Input
@@ -65,3 +77,14 @@ for istep in steps:
             else:
                 print '      GOOD: ascii particle files produced, e.g. '
                 print '     ',files[0]
+
+                # Further test
+                further= True
+                if (further):
+                    for infile in files:
+                        with open(infile) as ff:
+                            fof = []
+                            for line in ff: #x,y,z,vx,vy,vz,ids,fof
+                                fof = np.append(fof, line.strip().split()[7])
+                                if (len(fof)>100.): break
+                        print 'OK',infile

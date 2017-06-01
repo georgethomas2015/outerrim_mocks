@@ -35,7 +35,7 @@ print 'Processing redshift ',zz
 
 #Output file 
 outstep = 500000
-outfile = outdir+'OuterRim_STEP'+str(istep)+'_paticles_'+str(ifile)+'.txt'
+outfile = outdir+'OuterRim_STEP'+str(istep)+'_particles_'+str(ifile)+'.txt'
 if os.path.isfile(outfile):
     os.remove(outfile)
 
