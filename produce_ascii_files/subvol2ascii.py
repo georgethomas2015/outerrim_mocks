@@ -77,7 +77,7 @@ if (fofproperties):
                            (yc>0.) & (yc<float(lcut)) & \
                            (zc>0.) & (zc<float(lcut)) )
         if (np.shape(ind)[1] > 0):
-            print np.shape(ind),' haloes in ',infile
+            print np.shape(ind)[1],' haloes in ',infile
         
             tofile = zip(count[ind],tag[ind],mass[ind],\
                              xc[ind],yc[ind],zc[ind],\
@@ -86,7 +86,9 @@ if (fofproperties):
 
             if (first):
                 first = False
+                print '----------------------------'
                 gio.gio_inspect(infile)
+                print '----------------------------'
             
                 # Write header
                 with open(outfile, 'w') as outf:  
@@ -158,9 +160,7 @@ if (particles):
             tofile = zip(xc[ind],yc[ind],zc[ind],\
                              vx[ind],vy[ind],vz[ind],\
                              ids[ind],tag[ind])
-            print first
             if (first):
-                print 'here-------------'
                 first = False
                 gio.gio_inspect(infile)
             
