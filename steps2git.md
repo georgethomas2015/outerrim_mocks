@@ -4,35 +4,35 @@ If you need to: create an account in github and learn the basics with the [basic
 
 Github provides free account upgrades to students and anyone working at a educational/research institute, which allow you to have your own private repositories. To get this upgrade, once you have a personal account, go to this page and fill in the form: https://education.github.com/discount_requests/new
 
-The recommended steps to contribute to Firefly are:
+The recommended steps to contribute to OuterRim are:
 
-1. Fork and clone: Get a copy of Firefly from the GitHub repository 
+1. Fork and clone: Get a copy of OuterRim from the GitHub repository 
 1. Update your personal copy
 1. Track upstream: keeping your copy up-to-date with the main one
 1. Steps to follow when working on a new (big) feature: Branch, Contribute, Commit, (Merge) and Push.
-1. Submit a Pull Request to the main Firefly code.
+1. Submit a Pull Request to the main OuterRim code.
 
-## Fork and clone: Get a copy of Firefly from the GitHub repository 
+## Fork and clone: Get a copy of OuterRim from the GitHub repository 
 
-Once you have your GitHub account and are familiar with the basic git vocabulary, create your own Firefly copy:
+Once you have your GitHub account and are familiar with the basic git vocabulary, create your own OuterRim copy:
 
-1. Go to https://github.com/FireflySpectra/firefly_doc or https://github.com/FireflySpectra/firefly_dev
+1. Go to https://github.com/viogp/firefly_doc or https://github.com/viogp/outerrim_mocks
 
 2. Click 'Fork' there (right upper corner).
  
-The next step is to get your copy of Firefly into your machine (e.g Sciama):
+The next step is to get your copy of OuterRim into your machine (e.g Sciama):
 
 1. Go to your home directory in your machine.
 
-2. Clone there your repository. From your OWN local repository (firefly_[doc/dev] at your Sciama home):
+2. Clone there your repository. From your OWN local repository (outerrim_mocks at your Sciama home):
 
 ```   
->  git clone https://[username]@github.com/[username]/firefly_[doc/dev]
+>  git clone https://[username]@github.com/[username]/outerrim_mocks
 ```
 
 You'll be prompt for your GitHub username and password.
 
-## Updating your Firefly copy.
+## Updating your OuterRim copy.
 
 Ensure that the remote is the correct one: 
 ```
@@ -41,7 +41,7 @@ Ensure that the remote is the correct one:
 
 If you need to reset the remote link:
 ```
-> git remote set-url origin https://[git username]@github.com/[git username]/firefly_[doc/dev]
+> git remote set-url origin https://[git username]@github.com/[git username]/outerrim_mocks
 ```
    
 Update your personal copy:
@@ -56,10 +56,10 @@ This instructions follow the recommendations on [syncing a fork from GitHub](ttp
 the master version, set the upstream tracking:
 
 ```
-> git remote add --track master upstream https://[username]@github.com/FireflySpectra/firefly_doc
+> git remote add --track master upstream https://[username]@github.com/viogp/firefly_doc
 ```
 
-Now, every time you need to apply the changes that have been made to the master version to yours, navigate to your Firefly directory and run:
+Now, every time you need to apply the changes that have been made to the master version to yours, navigate to your OuterRim directory and run:
 
 ```
 > git fetch upstream
@@ -104,38 +104,7 @@ branch first, and then push:
 
 ## Submit a Pull Request
 
-When you are ready to update the main Firefly code, go to your GitHub Firefly page, click "New pull request" to create a Pull Request from your
+When you are ready to update the main OuterRim code, go to your GitHub OuterRim page, click "New pull request" to create a Pull Request from your
 latest commit. It will be applied by someone with
 administrator master version  rights after review.
-
-# Steps to create a new release under firefly_release
-
-Following the instructions given [here](http://ctarda.com/2015/11/private-development-public-release/):
-
-    git clone https://[username]@github.com/[username]/firefly_[doc/dev]
-    cd [firefly_dev]
-    git checkout -b release/release
-    git push origin release/release
-    git checkout -b release/github-master
-    git push origin release/github-master
-    git merge --squash release/release
-    git tag 0.0.1 -m "Firefly first release"
-    git remote add github https://github.com/FireflySpectra/firefly_release.git
-    git push github HEAD:master
-
-# Steps to create a new shared repository in Sciama
-
-On server (/mnt/lustre/firefly):
-> git init --bare --shared [new].git
-
-
-On client (a directory on your home):
-> mkdir [new]
-> cd [new]
-> echo "# README" >> README.md
-> git init
-> git add .
-> git commit -m "Initial commit"
-> git remote add origin /mnt/lustre/firefly/[new].git
-> git push origin master
 
