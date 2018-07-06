@@ -1,0 +1,18 @@
+# The following code plots a graph using the output file of the test data for CUTE_box.
+
+import numpy as np
+import matplotlib.pyplot as plt
+fig = plt.figure(3)
+ytit = '${\\rm r^{2}} \epsilon (r)$'
+xtit = '${\\rm Distance (r)}[Mpch^{-1}]$'
+plt.xlabel(xtit)
+plt.ylabel(ytit)
+ff = 'corr128.dat'
+logr, logeps, logerr, logdd = np.loadtxt(ff, unpack=True)
+logrsq = logr**2
+logprod = logrsq*logeps
+plt.errorbar(logr, logprod, yerr=None, xerr=logerr, fmt='o', color='r', ecolor='r', label='test data')
+leg = plt.legend(loc=1)
+leg.draw_frame(False)
+plt.show(fig)
+

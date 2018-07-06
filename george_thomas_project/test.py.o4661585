@@ -1,0 +1,17 @@
+=======================================================
+TORQUE job submitted on Thu Jun 28 14:18:43 BST 2018
+JOB ID: 4661585.headnode1.prv.sciama.cluster
+JOB NAME: test.py
+QUEUE: cluster.q
+MASTER: node106.prv.sciama.cluster
+Num Hosts: 1
+Num Tasks: 1
+Nodes used:
+node106
+=======================================================
+Job Output Follows:
+=======================================================
+
+==========================================================================
+Torque job completed on Thu Jun 28 14:18:43 BST 2018 with exit status of 2
+==========================================================================

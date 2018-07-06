@@ -1,0 +1,2 @@
+/var/spool/torque/mom_priv/jobs/4661585.headnode1.prv.sciama.cluster.SC: line 1: syntax error near unexpected token `"Hello world"'
+/var/spool/torque/mom_priv/jobs/4661585.headnode1.prv.sciama.cluster.SC: line 1: `print("Hello world")'
