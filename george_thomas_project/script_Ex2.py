@@ -11,7 +11,7 @@ def CalcNsat(M, M0, M1, alpha, Asat):
 Nsat = np.vectorize(CalcNsat)
 
 def CalcNcent(M, mu, sig, Acen):
-        return Acen/(sig*np.sqrt(np.pi*2.0))*np.exp(-(10**M - 10**mu)**2/(2.0*sig**2))
+        return Acen/(sig*np.sqrt(np.pi*2.0))*np.exp(-(M - mu)**2/(2.0*sig**2))
 
 Ncent = np.vectorize(CalcNcent)
 
