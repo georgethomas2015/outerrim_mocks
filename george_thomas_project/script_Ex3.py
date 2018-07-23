@@ -45,7 +45,7 @@ MExpr = np.vectorize(CalcMExpr)
 #print (len(mbins), len(mhist), len(H), H)
 #dNhdlogMh = H
 
-#Acen = 2.0
+#Acen = 1.0
 #sig = 0.12
 #mu = 12.0
 #ncen = np.zeros(len(mhist))
@@ -88,29 +88,29 @@ H, bins_edges = np.histogram(logM, bins=np.append(mbins, logMmax))
 #print (len(mbins), len(mhist), len(H), H)
 dNhdlogMh = H
 
-Acen = 2.0
+Acen = 1.0
 sig = 0.12
 mu = 12.0
 ncen = Ncent(mhist, mu, sig, Acen)
 
-path2plot = "/users/ghthomas/output_plots/"
-plotname = "Ex3.1_200Mpc.png"
-fig = plt.figure(figsize = (8., 9.))
-xtit = '${\\rm logM_{h}}$'
-ytit = '${\\rm logN_{h}}$'
-plt.xlabel(xtit)
-plt.ylabel(ytit)
-plt.ylim([-5, 6])
-plt.rc('xtick', labelsize=10)
-plt.plot(mhist, np.log10(H), linewidth=3)
-plt.plot(mhist, np.log10(ncen), linewidth=3)
-plt.show()
-fig.savefig(path2plot + plotname)
-print ('Ouput: ', path2plot + plotname)
+#path2plot = "/users/ghthomas/output_plots/"
+#plotname = "Ex3.1_200Mpc.png"
+#fig = plt.figure(figsize = (8., 9.))
+#xtit = '${\\rm logM_{h}}$'
+#ytit = '${\\rm logN_{h}}$'
+#plt.xlabel(xtit)
+#plt.ylabel(ytit)
+#plt.ylim([-5, 6])
+#plt.rc('xtick', labelsize=10)
+#plt.plot(mhist, np.log10(H), linewidth=3)
+#plt.plot(mhist, np.log10(ncen), linewidth=3)
+#plt.show()
+#fig.savefig(path2plot + plotname)
+#print ('Ouput: ', path2plot + plotname)
 
-sys.exit()
+#sys.exit()
 
-V = 500**3
+V = 200**3
 #n = N/V
 
 logM0 = mu
@@ -132,9 +132,10 @@ fsat = np.linspace(0.0, 1.0, num=20, endpoint=False)
 #Nc = Acen*np.trapz(dNdlogMh*Ncent(logM, mu, sig, Acen))
 
 Integrand = dNhdlogMh*ncen
-Ncentot = Acen*np.trapz(Integrand, x=mhist)
-#Ncentot = Acen*integrate.simps(Integrand, mhist)
-Denominator = np.trapz(dNhdlogMh*dlogM*MExpr(mhist, logM0, logM1, alpha), mhist) 
+#Ncentot = Acen*np.trapz(Integrand, x=mhist)
+Ncentot = Acen*integrate.simps(Integrand, mhist)
+#Denominator = np.trapz(dNhdlogMh*dlogM*MExpr(mhist, logM0, logM1, alpha), mhist)
+Denominator = integrate.simps(dNhdlogMh*dlogM*MExpr(mhist, logM0, logM1, alpha), mhist)
 Numerator = Ncentot*(1.0/fsat - 1)**(-1)
 Asat = Numerator/Denominator
 #print (Asat)
@@ -144,16 +145,43 @@ Asat = Numerator/Denominator
 
 #sys.exit()
 
-path2plot = "/users/ghthomas/output_plots/"
+#Asat vs fsat plot
+#path2plot = "/users/ghthomas/output_plots/"
 #plotname = "Asat vs fsat graph_test.png"
-plotname = "Asat vs fsat graph_200Mpc.png"
+#plotname = "Asat vs fsat graph_200Mpc.png"
+#fig = plt.figure(figsize = (8., 9.))
+#xtit = '${\\rm f_{Sat}}$'
+#ytit = '${\\rm A_{Sat}}$'
+#plt.xlabel(xtit)
+#plt.ylabel(ytit)
+#plt.rc('xtick', labelsize=10)
+#plt.plot(fsat, Asat, 'r-')
+#plt.show()
+#fig.savefig(path2plot + plotname)
+#print ('Ouput: ', path2plot + plotname)
+
+fsatspec = np.array([fsat[1], fsat[2], fsat[3], fsat[4], fsat[5]])
+
+#Ncen and Nsat plot
+path2plot = "/users/ghthomas/output_plots/"
+#plotname = "logMh vs logNcen and logNsat_test.png"
+plotname = "logMh vs logNcen and logNsat_200Mpc.png"
 fig = plt.figure(figsize = (8., 9.))
-xtit = '${\\rm f_{Sat}}$'
-ytit = '${\\rm A_{Sat}}$'
+xtit = '${\\rm logM_{h}}$'
+ytit = '${\\rm logN}$'
 plt.xlabel(xtit)
 plt.ylabel(ytit)
-plt.rc('xtick', labelsize=10)
-plt.plot(fsat, Asat, 'r-')
+#plt.ylim([-3, 5])
+plt.ylim([-1, 5])
+plt.plot(mhist, np.log10(ncen), label='${\\rm N_{cen}}$')
+
+for f in fsatspec:
+	Numeratorspec = Ncentot*(1.0/f - 1)**(-1)
+	Asatspec = Numeratorspec/Denominator
+	plt.plot(mhist, np.log10(Nsat(mhist, logM0, logM1, alpha, Asatspec)), label='$N_{sat}, f_{sat}=$' + str(f))	
+
+leg = plt.legend(loc=1)
+leg.draw_frame(False)
 plt.show()
 fig.savefig(path2plot + plotname)
 print ('Ouput: ', path2plot + plotname)

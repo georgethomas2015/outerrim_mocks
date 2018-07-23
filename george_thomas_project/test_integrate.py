@@ -22,12 +22,14 @@ y.fill(1.0)
 
 #print (result)
 
-a = np.array([1, 2, 3])
+a = np.array([1, 2, 3, 4])
 
-b = np.array([1, 4, 9])
+b = np.array([8, 11, 5, 10])
 
 result = integrate.simps(b, a)
 
+resultalt = np.trapz(b , a)
+
 #result2 = integrate.simps(y(a), a)
 #This integral becomes inaccurate for polynomials of order 4 or greater.
-print (result)
+print (result, resultalt)

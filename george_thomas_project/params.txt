@@ -1,5 +1,5 @@
 #input information
-data_filename= 
+data_filename= /users/ghthomas/CUTE/CUTE_box/OuterRim266red.txt
 num_lines= all
 input_format= 0
 output_filename= /users/ghthomas/output_catalogues/OuterRimvol200Mpcdata.dat
