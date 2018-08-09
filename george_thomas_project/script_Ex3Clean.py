@@ -4,6 +4,7 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import sys
 import scipy.integrate as integrate
+from scipy.special import erf
 
 def CalcNsat(M, M0, M1, alpha, Asat):
 	Nsat_Mh = Asat*(((10**M) - 10**M0)/10**M1)**alpha
@@ -27,6 +28,19 @@ def CalcMExpr(M, M0, M1, alpha):
 
 MExpr = np.vectorize(CalcMExpr)
 
+def CalcNsat2(M, M0, M1, alpha):
+	if (M*alpha>M0*alpha):
+		return (((10**M) - 10**M0)/10**M1)**alpha
+	else:
+		return 0.
+
+Nsat2 = np.vectorize(CalcNsat2)
+
+def CalcNcent2(M, Mmin, sig):
+	return 0.5*( 1 + erf((M - Mmin)/sig))
+
+Ncent2 = np.vectorize(CalcNcent2)
+
 #Input variables
 V = 200**3
 
@@ -45,6 +59,7 @@ mu = 12.0
 logM0 = mu
 alpha = 0.8
 logM1 = 1.0 + mu
+logMmin2 = 12.8
 
 fsat = 0.05
 
@@ -55,6 +70,7 @@ H, bins_edges = np.histogram(logM, bins=np.append(mbins, logMmax)) #Creates a hi
 dNhdlogMh = H
 
 ncen = Ncent(mhist, mu, sig, Acen)
+ncen2 = Ncent2(mhist, logMmin2, sig)
 
 #Asat calculation
 Integrand = dNhdlogMh*ncen
@@ -72,8 +88,8 @@ Numerator2 = Ncentot*(1.0/fsat2 - 1)**(-1)
 Asat2 = Numerator2/Denominator
 
 doplot1 = False
-doplot2 = True
-doplot3 = False
+doplot2 = False
+doplot3 = True
 
 #LogM vs LogNcen plot
 if doplot1:
@@ -118,7 +134,7 @@ if doplot3:
 	ytit = '${\\rm logN}$'
 	plt.xlabel(xtit)
 	plt.ylabel(ytit)
-	plt.ylim([-1, 5])
+	plt.ylim([-1, 6])
 	plt.plot(mhist, np.log10(ncen), label='${\\rm N_{cen}}$')
 
 	for f in fsatspec:
@@ -126,6 +142,8 @@ if doplot3:
 		Asatspec = Numeratorspec/Denominator
 		plt.plot(mhist, np.log10(Nsat(mhist, logM0, logM1, alpha, Asatspec)), label='$N_{sat}, f_{sat}=$' + str(f))	
 
+	plt.plot(mhist, np.log10(ncen2), label='${\\rm N_{cen}, 5pHOD}$')
+	plt.plot(mhist, np.log10(Nsat2(mhist, logM0, logM1, alpha)), label='${\\rm N_{sat}, 5pHOD}$')
 	leg = plt.legend(loc=1)
 	leg.draw_frame(False)
 	plt.show()
