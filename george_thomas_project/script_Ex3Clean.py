@@ -134,6 +134,7 @@ if doplot3:
 	ytit = '${\\rm logN}$'
 	plt.xlabel(xtit)
 	plt.ylabel(ytit)
+	plt.xlim([11, 16.5])
 	plt.ylim([-1, 6])
 	plt.plot(mhist, np.log10(ncen), label='${\\rm N_{cen}}$')
 
@@ -142,8 +143,8 @@ if doplot3:
 		Asatspec = Numeratorspec/Denominator
 		plt.plot(mhist, np.log10(Nsat(mhist, logM0, logM1, alpha, Asatspec)), label='$N_{sat}, f_{sat}=$' + str(f))	
 
-	plt.plot(mhist, np.log10(ncen2), label='${\\rm N_{cen}, 5pHOD}$')
-	plt.plot(mhist, np.log10(Nsat2(mhist, logM0, logM1, alpha)), label='${\\rm N_{sat}, 5pHOD}$')
+	plt.plot(mhist, np.log10(ncen2), '--',label='${\\rm N_{cen}, 5pHOD}$')
+	plt.plot(mhist, np.log10(Nsat2(mhist, logM0, logM1, alpha)), '--',label='${\\rm N_{sat}, 5pHOD}$')
 	leg = plt.legend(loc=1)
 	leg.draw_frame(False)
 	plt.show()
